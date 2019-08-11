@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    // Load version properties
+    def versionPropertiesFile = file('config.properties')
+    Properties versionProperties = new Properties()
+    versionProperties.load(new FileInputStream(versionPropertiesFile))
+    def appVersionCode = versionProperties['appVersionCode'].toInteger()
+    def appVersionName = versionProperties['appVersionName'].toString()
+    def CLIENT_ID = versionProperties['CLIENT_ID'].toString()
+    def YOUTUBE_KEY = versionProperties['YOUTUBE_KEY'].toString()
+    compileSdkVersion versions.compileSdk
+    defaultConfig {
+        applicationId "com.sun.moviedb"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode appVersionCode
+        versionName appVersionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "long", "BUILD_TIME", System.currentTimeMillis() + "L"
+        buildConfigField "String", "CLIENT_ID", CLIENT_ID
+        buildConfigField "String", "YOUTUBE_KEY", YOUTUBE_KEY
+        buildConfigField "int", "APP_DATABASE_VERSION", "1"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin_version"
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
+    implementation "androidx.core:core-ktx:$versions.androidx"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+    implementation "androidx.cardview:cardview:$versions.card_view"
+    implementation "com.google.code.gson:gson:$versions.gson_version"
+    implementation "com.google.android.material:material:$versions.google_material"
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$versions.glide"
+    implementation "de.hdodenhof:circleimageview:$versions.circle_imageview"
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerview"
+    // Architecture
+    implementation "android.arch.navigation:navigation-fragment-ktx:$versions.nav_version"
+    implementation "android.arch.navigation:navigation-ui-ktx:$versions.nav_version"
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle_version"
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit_version"
+    // Koin for Android
+    implementation "org.koin:koin-android:$versions.koin_version"
+    implementation "org.koin:koin-android-viewmodel:$versions.koin_version"
+    //Interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.logging_interceptor"
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutine"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutine"
+    //ROOM
+    implementation "androidx.room:room-runtime:$versions.room_version"
+    implementation "androidx.room:room-ktx:$versions.room_version"
+    annotationProcessor "androidx.room:room-compiler:$versions.room_version"
+    //Pagging
+    implementation "androidx.paging:paging-runtime:$versions.paging_version"
+    //preference
+    implementation "androidx.preference:preference:$versions.preference"
+    //sdp and ssp
+    implementation "com.intuit.sdp:sdp-android:$versions.ssp_sdp"
+    implementation "com.intuit.ssp:ssp-android:$versions.ssp_sdp"
+    //Testing
+    testImplementation "junit:junit:$versions.junit"
+    androidTestImplementation "androidx.test:runner:$versions.runner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso_core"
+}
