@@ -28,7 +28,7 @@ abstract class BaseActivity : AppCompatActivity(), IBaseViewMain {
     private fun getCurrentFragment(): Fragment? {
         val currentNavHost = supportFragmentManager.findFragmentById(R.id.hostNavigation)
         val currentFragmentClassName =
-            (currentNavHost!!.findNavController().currentDestination as FragmentNavigator.Destination).className
+                (currentNavHost!!.findNavController().currentDestination as FragmentNavigator.Destination).className
         return currentNavHost.childFragmentManager.fragments.filterNotNull().find {
             it.javaClass.name == currentFragmentClassName
         }

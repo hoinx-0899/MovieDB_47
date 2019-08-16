@@ -2,11 +2,15 @@ package com.sun.moviedb
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.sun.moviedb.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override val getContentViewId: Int = R.layout.activity_main
+
+    override fun initializeView(savedInstanceState: Bundle?) {
+    }
+
+    override fun initializeComponents() {
     }
 }
