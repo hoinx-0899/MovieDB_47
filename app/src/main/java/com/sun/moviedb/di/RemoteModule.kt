@@ -57,4 +57,3 @@ val remoteModule = module {
     single { createOkHttpClient() }
     single(named(RemoteProperties::class.java.name)) { createWebService<RemoteDataSource>(get(),get(),get(),get()) }
 }
-

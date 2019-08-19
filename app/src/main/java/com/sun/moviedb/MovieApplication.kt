@@ -3,6 +3,8 @@ package com.sun.moviedb
 import android.app.Application
 import android.content.Context
 import com.sun.moviedb.di.remoteModule
+import com.sun.moviedb.di.sourceModule
+import com.sun.moviedb.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -19,7 +21,7 @@ class MovieApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@MovieApplication)
-            modules(listOf(remoteModule))
+            modules(listOf(remoteModule, sourceModule, viewModelModule))
         }
     }
 
