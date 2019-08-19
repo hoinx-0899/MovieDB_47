@@ -22,6 +22,50 @@ class SplashScreenFragment : BaseFragment<FragmentSplashScreenBinding>() {
     override val getContentViewId: Int = R.layout.fragment_splash_screen
 
     override fun initializeView(savedInstanceState: Bundle?) {
+        motion_layout.transitionToEnd()
+        val topLeftAnimationForward =
+            AnimatedVectorDrawableCompat.create(context!!, R.drawable.top_left_liquid_forward)
+        val topLeftAnimationReverse =
+            AnimatedVectorDrawableCompat.create(context!!, R.drawable.top_left_liquid_reverse)
+        val bottomRightAnimationForward =
+            AnimatedVectorDrawableCompat.create(context!!, R.drawable.bottom_right_liquid_forward)
+        val bottomRightAnimationReverse =
+            AnimatedVectorDrawableCompat.create(context!!, R.drawable.bottom_right_liquid_reverse)
+        val topLeftImageView = imageTopLeft.apply {
+            setImageDrawable(topLeftAnimationForward)
+        }
+        val bottomRightImageView = imageBottomRight.apply {
+            setImageDrawable(bottomRightAnimationForward)
+        }
+
+        topLeftAnimationForward?.registerAnimationCallback(object : Animatable2Compat.AnimationCallback() {
+            override fun onAnimationEnd(drawable: Drawable?) {
+                topLeftImageView.setImageDrawable(topLeftAnimationReverse)
+                topLeftAnimationReverse?.start()
+
+            }
+        })
+        topLeftAnimationReverse?.registerAnimationCallback(object : Animatable2Compat.AnimationCallback() {
+            override fun onAnimationEnd(drawable: Drawable?) {
+                topLeftImageView.setImageDrawable(topLeftAnimationForward)
+                topLeftAnimationForward?.start()
+            }
+        })
+
+        bottomRightAnimationForward?.registerAnimationCallback(object : Animatable2Compat.AnimationCallback() {
+            override fun onAnimationEnd(drawable: Drawable?) {
+                bottomRightImageView.setImageDrawable(bottomRightAnimationReverse)
+                bottomRightAnimationReverse?.start()
+            }
+        })
+        bottomRightAnimationReverse?.registerAnimationCallback(object : Animatable2Compat.AnimationCallback() {
+            override fun onAnimationEnd(drawable: Drawable?) {
+                bottomRightImageView.setImageDrawable(bottomRightAnimationForward)
+                bottomRightAnimationForward?.start()
+            }
+        })
+        topLeftAnimationForward?.start()
+        bottomRightAnimationForward?.start()
 
     }
 
