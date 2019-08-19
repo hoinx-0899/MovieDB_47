@@ -1,7 +1,6 @@
 package com.sun.moviedb.base
 
 import android.os.Bundle
-import androidx.annotation.LayoutRes
 
 interface IBaseViewMain {
     val getContentViewId: Int

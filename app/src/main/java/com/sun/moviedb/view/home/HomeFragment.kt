@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import com.sun.moviedb.MainActivity
 import com.sun.moviedb.R
 import com.sun.moviedb.base.ViewModelBaseFragment
 import com.sun.moviedb.databinding.FragmentHomeBinding
+import com.sun.moviedb.view.adapter.GenresAdapter
 import com.sun.moviedb.view.widget.BackDropView
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -28,6 +31,18 @@ class HomeFragment : ViewModelBaseFragment<HomeViewModel, FragmentHomeBinding>()
     }
 
     override fun initializeComponents() {
+        val adapterGenres = GenresAdapter {
+
+        }
+        recyclerGenres.apply {
+            this.adapter = adapterGenres
+        }
+        viewModel.genres.observe(this, Observer {
+            handlerError(it)
+            it.result?.let { genres ->
+                adapterGenres.submitList(genres)
+            }
+        })
 
     }
 

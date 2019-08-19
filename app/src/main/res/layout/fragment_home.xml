@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View"/>
         <variable
@@ -71,6 +72,7 @@
             android:paddingTop="@dimen/dp_8"
             android:paddingBottom="@dimen/dp_8"
             android:orientation="vertical"
+            tools:listitem="@layout/item_genres"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
     </androidx.drawerlayout.widget.DrawerLayout>
 
