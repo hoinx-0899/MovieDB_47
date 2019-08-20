@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/childHomeFragment"
-        android:name="com.sun.moviedb.view.childhome.ChildHomeFragment"
+        android:name="com.sun.moviedb.view.childhome.ChildHomeMovieFragment"
         android:label="ChildHomeFragment" />
 </navigation>

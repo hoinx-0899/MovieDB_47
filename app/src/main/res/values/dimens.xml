@@ -13,5 +13,8 @@
     <dimen name="dp_minus_400">-400dp</dimen>
     <dimen name="dp_600">600dp</dimen>
     <dimen name="dp_minus_600">-600dp</dimen>
+    <dimen name="dp_120">120dp</dimen>
+    <dimen name="dp_170">170dp</dimen>
+    <dimen name="dp_12">12dp</dimen>
 
 </resources>

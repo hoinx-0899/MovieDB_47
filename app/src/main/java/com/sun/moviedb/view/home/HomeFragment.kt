@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.animation.AccelerateDecelerateInterpolator
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.sun.moviedb.MainActivity
@@ -15,6 +14,7 @@ import com.sun.moviedb.view.adapter.GenresAdapter
 import com.sun.moviedb.view.widget.BackDropView
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
+
 /**
  * Created by nguyenxuanhoi on 2019-08-07.
  * @author nguyen.xuan.hoi@sun-asterisk.com
@@ -23,7 +23,7 @@ class HomeFragment : ViewModelBaseFragment<HomeViewModel, FragmentHomeBinding>()
 
     override val viewModel: HomeViewModel by viewModel()
 
-    override val getContentViewId: Int = R.layout.fragment_home
+    override val getContentViewId = R.layout.fragment_home
 
     override fun initializeView(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
