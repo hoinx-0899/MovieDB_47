@@ -26,8 +26,4 @@
         <item name="cornerSize">8dp</item>
     </style>
 
-    <style name="TextAppearance.Movie.Toolbar" parent="TextAppearance.MaterialComponents.Button">
-        <item name="android:textSize">16sp</item>
-    </style>
-
 </resources>
