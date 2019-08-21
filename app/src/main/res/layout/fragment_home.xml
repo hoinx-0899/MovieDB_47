@@ -49,15 +49,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="?actionBarSize"
+                android:background="@drawable/bg_layout"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                <fragment
-                    android:id="@+id/hostHomeNav"
-                    android:name="androidx.navigation.fragment.NavHostFragment"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:defaultNavHost="true"
-                    app:navGraph="@navigation/nav_home"/>
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/item_home_movie" />
             </LinearLayout>
 
         </FrameLayout>
@@ -75,5 +79,4 @@
             tools:listitem="@layout/item_genres"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
     </androidx.drawerlayout.widget.DrawerLayout>
-
 </layout>
