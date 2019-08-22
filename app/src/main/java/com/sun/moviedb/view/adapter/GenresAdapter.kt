@@ -23,7 +23,7 @@ class GenresAdapter(val onItemClicked: (genres: Genres) -> Unit) :
 
     override fun bindFirstTime(binding: ItemGenresBinding) {
         binding.apply {
-            root.setOnClickListener {
+            buttonName.setOnClickListener {
                 item.apply {
                     this?.let {
                         onItemClicked(it)
