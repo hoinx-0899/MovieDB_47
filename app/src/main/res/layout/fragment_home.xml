@@ -3,15 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <import type="android.view.View" />
-
-        <variable
-            name="bindingViewModel"
-            type="com.sun.moviedb.view.home.HomeViewModel" />
-    </data>
-
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer"
         android:layout_width="match_parent"
@@ -35,20 +26,6 @@
                 <include layout="@layout/layout_menu" />
             </LinearLayout>
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:elevation="@dimen/dp_4">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:navigationIcon="@drawable/ic_menu"
-                    app:title="@string/app_name"
-                    app:titleTextColor="@android:color/white" />
-            </com.google.android.material.appbar.AppBarLayout>
-
             <LinearLayout
                 android:id="@+id/home"
                 android:layout_width="match_parent"
@@ -66,6 +43,20 @@
                     app:navGraph="@navigation/nv_home" />
             </LinearLayout>
 
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:elevation="@dimen/dp_4">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:navigationIcon="@drawable/ic_menu"
+                    app:title="@string/app_name"
+                    app:titleTextColor="@android:color/white" />
+            </com.google.android.material.appbar.AppBarLayout>
+
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -73,7 +64,7 @@
             android:layout_width="@dimen/dp_250"
             android:layout_height="match_parent"
             android:layout_gravity="end"
-            android:background="@android:color/white"
+            android:background="@color/color_on_primary"
             android:clipToPadding="false"
             android:elevation="@dimen/dp_16"
             android:orientation="vertical"
@@ -82,4 +73,13 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_genres" />
     </androidx.drawerlayout.widget.DrawerLayout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="bindingViewModel"
+            type="com.sun.moviedb.view.home.HomeViewModel" />
+    </data>
 </layout>

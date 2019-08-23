@@ -1,11 +1,16 @@
 package com.sun.moviedb.view.home
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.widget.CheckBox
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.TooltipCompat
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
@@ -96,7 +101,27 @@ class HomeFragment : ViewModelBaseFragment<HomeViewModel, FragmentHomeBinding>()
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_main, menu)
+        val toggleTheme = menu.findItem(R.id.menu_theme)
+        val actionView = toggleTheme.actionView
+        (actionView as CheckBox?)?.apply {
+            setButtonDrawable(R.drawable.ic_dark_theme)
+            isChecked = isDarkTheme()
+            jumpDrawablesToCurrentState()
+            setOnCheckedChangeListener { _, isChecked ->
+                postDelayed({
+                    AppCompatDelegate.setDefaultNightMode(
+                            if (isChecked) AppCompatDelegate.MODE_NIGHT_YES
+                            else AppCompatDelegate.MODE_NIGHT_NO)
+                    (activity as MainActivity).delegate.applyDayNight()
+                }, Constants.TIME_DELAY_CHANGE_MODE)
+            }
+            TooltipCompat.setTooltipText(this, getString(R.string.title_dark_theme))
+        }
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    private fun isDarkTheme(): Boolean {
+        return context!!.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
@@ -121,7 +146,7 @@ class HomeFragment : ViewModelBaseFragment<HomeViewModel, FragmentHomeBinding>()
         )
     }
 
-    fun navigate(id: Int, bundle: Bundle?) {
+    private fun navigate(id: Int, bundle: Bundle?) {
         if (navController.currentDestination?.id != id) {
             navController.navigate(id, bundle, navOptions {
                 anim {
