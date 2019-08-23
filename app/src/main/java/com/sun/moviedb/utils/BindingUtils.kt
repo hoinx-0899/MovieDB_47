@@ -11,7 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.sun.moviedb.MovieApplication
 import com.sun.moviedb.R
 import com.sun.moviedb.data.entity.Movie
-import com.sun.moviedb.view.adapter.MovieHomeAdapter
+import com.sun.moviedb.view.adapter.MovieAdapter
 
 /**
  * Created by nguyenxuanhoi on 2019-08-17.
@@ -51,7 +51,7 @@ object BindingUtils {
     @BindingAdapter("movieCategories")
     @JvmStatic
     fun bindCategoryMovies(recycler: RecyclerView, movies: List<Movie>) {
-        val adapter = recycler.adapter as? MovieHomeAdapter
+        val adapter = recycler.adapter as? MovieAdapter
         adapter?.submitList(movies)
     }
 

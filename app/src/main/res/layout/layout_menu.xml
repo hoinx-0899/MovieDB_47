@@ -1,32 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
+
     <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonAll"
-            android:background="?android:attr/selectableItemBackground"
-            android:textColor="?android:attr/textColorPrimary"
-            android:text="@string/title_now_playing"/>
+        android:id="@+id/buttonNowPlaying"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="@string/title_now_playing"
+        android:textColor="?android:attr/textColorPrimary" />
+
     <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
-            android:textColor="?android:attr/textColorPrimary"
-            android:text="@string/title_popular"/>
-    <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
-            android:textColor="?android:attr/textColorPrimary"
-            android:text="@string/title_top_rate"/>
-    <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?android:attr/selectableItemBackground"
-            android:textColor="?android:attr/textColorPrimary"
-            android:text="@string/title_up_coming"/>
+        android:id="@+id/buttonTopRate"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:text="@string/title_top_rate"
+        android:textColor="?android:attr/textColorPrimary" />
 </merge>

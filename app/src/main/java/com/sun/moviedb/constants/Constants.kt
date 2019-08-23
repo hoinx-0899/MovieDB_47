@@ -7,5 +7,6 @@ interface Constants {
         val IMAGE_SIZE_W200 = "w200/"
         val IMAGE_SIZE_W500 = "w500/"
         val BASE_THUMBNAIL_PATH = "https://img.youtube.com/vi/%s/hqdefault.jpg"
+        const val BUNDLE_QUERY="query"
     }
 }

@@ -10,7 +10,7 @@ import com.sun.moviedb.databinding.ItemMovieBinding
  * Created by nguyenxuanhoi on 2019-08-16.
  * @author nguyen.xuan.hoi@sun-asterisk.com
  */
-class MovieHomeAdapter(val onItemClicked: (movie: Movie) -> Unit) : BaseRecyclerAdapter<Movie, ItemMovieBinding>(object : DiffUtil.ItemCallback<Movie>() {
+class MovieAdapter(val onItemClicked: (movie: Movie) -> Unit) : BaseRecyclerAdapter<Movie, ItemMovieBinding>(object : DiffUtil.ItemCallback<Movie>() {
     override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean = oldItem.id == newItem.id
 
     override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean = oldItem == newItem
