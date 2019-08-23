@@ -10,6 +10,13 @@
             tools:ignore="AlwaysShowAction,AppCompatResource" />
 
     <item
+            android:id="@+id/menu_theme"
+            android:title="@string/title_dark_theme"
+            app:actionViewClass="android.widget.CheckBox"
+            app:showAsAction="always"
+            tools:ignore="AlwaysShowAction,AppCompatResource" />
+
+    <item
             android:id="@+id/menu_filter"
             android:title="@string/title_filter"
             android:icon="@drawable/ic_filter"
