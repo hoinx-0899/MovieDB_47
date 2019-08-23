@@ -15,9 +15,11 @@ import com.sun.moviedb.utils.CategoryQuery
  * Created by nguyenxuanhoi on 2019-08-07.
  * @author nguyen.xuan.hoi@sun-asterisk.com
  */
-class HomeViewModel(application: Application, private val homeRepository: HomeRepository,
-                    private val reponsitory:MovieByCategoryRepository) :
-    AndroidViewModel(application) {
+class HomeViewModel(
+        application: Application,
+        private val homeRepository: HomeRepository,
+        private val reponsitory: MovieByCategoryRepository)
+    : AndroidViewModel(application) {
 
     private val _genres = homeRepository.getAllGenres()
     val genres: LiveData<BaseResponse<List<Genres>>>

@@ -24,7 +24,7 @@ class HomeAdapter(val onMoreClicked: (category: CategoryDTO) -> Unit,
     override fun getLayoutRes(viewType: Int): Int = R.layout.item_home_movie
 
     override fun bindFirstTime(binding: ItemHomeMovieBinding) {
-        val movieHomeAdapter = MovieHomeAdapter {
+        val movieHomeAdapter = MovieAdapter {
             onItemClicked(it)
 
         }

@@ -1,4 +1,4 @@
-package com.sun.moviedb.view.movie
+package com.sun.moviedb.view.genres
 
 import android.os.Bundle
 import com.sun.moviedb.R

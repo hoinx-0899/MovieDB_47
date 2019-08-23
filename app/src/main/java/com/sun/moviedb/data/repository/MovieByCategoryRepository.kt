@@ -23,9 +23,7 @@ class MovieByCategoryRepository(
 
 
     override fun getQueryTypeCategory() = listOf(
-            CategoryDTO(CategoryQuery.NOW_PLAYING),
             CategoryDTO(CategoryQuery.POPULAR),
-            CategoryDTO(CategoryQuery.TOP_RATE),
             CategoryDTO(CategoryQuery.UP_COMING)
     )
 
