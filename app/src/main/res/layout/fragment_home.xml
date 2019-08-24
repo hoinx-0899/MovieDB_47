@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer"
         android:layout_width="match_parent"
@@ -18,13 +17,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="?actionBarSize"
                 android:background="@color/color_accent"
                 android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="?actionBarSize">
 
-                <include layout="@layout/layout_menu" />
+                <include layout="@layout/layout_menu"/>
             </LinearLayout>
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:elevation="@dimen/dp_4">
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:navigationIcon="@drawable/ic_menu"
+                    app:titleTextColor="@android:color/white"
+                    app:title="@string/app_name"/>
+            </com.google.android.material.appbar.AppBarLayout>
 
             <LinearLayout
                 android:id="@+id/home"
@@ -33,53 +45,29 @@
                 android:layout_marginTop="?actionBarSize"
                 android:background="@drawable/bg_layout"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
                 <fragment
                     android:id="@+id/hostHomeNav"
                     android:name="androidx.navigation.fragment.NavHostFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:defaultNavHost="true"
-                    app:navGraph="@navigation/nv_home" />
+                    app:navGraph="@navigation/nv_home"/>
+
             </LinearLayout>
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:elevation="@dimen/dp_4">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:navigationIcon="@drawable/ic_menu"
-                    app:title="@string/app_name"
-                    app:titleTextColor="@android:color/white" />
-            </com.google.android.material.appbar.AppBarLayout>
-
         </FrameLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerGenres"
             android:layout_width="@dimen/dp_250"
             android:layout_height="match_parent"
+            android:background="@android:color/white"
             android:layout_gravity="end"
-            android:background="@color/color_on_primary"
             android:clipToPadding="false"
             android:elevation="@dimen/dp_16"
-            android:orientation="vertical"
             android:paddingTop="@dimen/dp_8"
             android:paddingBottom="@dimen/dp_8"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_genres" />
+            android:orientation="vertical"
+            tools:listitem="@layout/item_genres"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
     </androidx.drawerlayout.widget.DrawerLayout>
-
-    <data>
-
-        <import type="android.view.View" />
-
-        <variable
-            name="bindingViewModel"
-            type="com.sun.moviedb.view.home.HomeViewModel" />
-    </data>
 </layout>

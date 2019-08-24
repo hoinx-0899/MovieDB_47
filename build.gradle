@@ -28,7 +28,7 @@ buildscript {
             koin_version       : '2.0.1',
             glide              : '4.9.0',
             google_material    : '1.1.0-alpha09',
-            constraint_layout  : '2.0.0-beta2',
+            constraint_layout  : '2.0.0-beta1',
             circle_imageview   : '3.0.0',
             recyclerview       : "1.1.0-beta03",
             ssp_sdp            : "1.0.6"

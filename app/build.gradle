@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
-apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: "androidx.navigation.safeargs"
 
 android {
     // Load version properties
@@ -54,7 +54,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin_version"
     implementation "androidx.appcompat:appcompat:$versions.appcompat"
     implementation "androidx.core:core-ktx:$versions.androidx"
@@ -66,29 +66,38 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$versions.glide"
     implementation "de.hdodenhof:circleimageview:$versions.circle_imageview"
     implementation "androidx.recyclerview:recyclerview:$versions.recyclerview"
+
     // Architecture
     implementation "androidx.navigation:navigation-fragment-ktx:$versions.nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$versions.nav_version"
+
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle_version"
     kapt "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle_version"
+
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$versions.retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit_version"
+
     // Koin for Android
     implementation "org.koin:koin-android:$versions.koin_version"
     implementation "org.koin:koin-android-viewmodel:$versions.koin_version"
+
     //Interceptor
     implementation "com.squareup.okhttp3:logging-interceptor:$versions.logging_interceptor"
+
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutine"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutine"
+
     //ROOM
     implementation "androidx.room:room-runtime:$versions.room_version"
     kapt "androidx.room:room-compiler:$versions.room_version"
     implementation "androidx.room:room-ktx:$versions.room_version"
+
     //Pagging
     implementation "androidx.paging:paging-runtime:$versions.paging_version"
+
     //preference
     implementation "androidx.preference:preference:$versions.preference"
 
@@ -96,4 +105,5 @@ dependencies {
     testImplementation "junit:junit:$versions.junit"
     androidTestImplementation "androidx.test:runner:$versions.runner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso_core"
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
 }

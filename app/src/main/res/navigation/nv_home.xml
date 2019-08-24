@@ -64,6 +64,11 @@
     <activity
         android:id="@+id/detailMovieActivity"
         android:name="com.sun.moviedb.view.detail.DetailMovieActivity"
-        android:label="DetailMovieActivity" />
+        android:label="DetailMovieActivity">
+        <argument
+            android:name="movie"
+            app:argType="com.sun.moviedb.data.entity.Movie"/>
+
+    </activity>
 
 </navigation>

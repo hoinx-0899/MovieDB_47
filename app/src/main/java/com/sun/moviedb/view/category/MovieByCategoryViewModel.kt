@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.sun.moviedb.data.repository.MovieByCategoryRepository
+import com.sun.moviedb.utils.CategoryQuery
 
 /**
  * Created by nguyenxuanhoi on 2019-08-23.
@@ -24,9 +25,7 @@ class MovieByCategoryViewModel(
         it?.let {
             repository.getMoviesByCategory(queryType = it, page = FIRST_PAGE)
         }
-
     }
-
     fun initQueryType(query: String?) {
         query?.let {
             _queryType.value = it

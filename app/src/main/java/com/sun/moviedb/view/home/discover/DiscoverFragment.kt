@@ -39,7 +39,9 @@ class DiscoverFragment : ViewModelBaseFragment<DiscoverViewModel, FragmentDiscov
             val directions = DiscoverFragmentDirections.actDiscoverToMovieByCategory(it.queryType)
             findNavController().navigate(directions)
         }, {
-            findNavController().navigate(R.id.actDiscoverToDetailActivity)
+            val directions = DiscoverFragmentDirections.actDiscoverToDetailActivity(it)
+            findNavController().navigate(directions)
+
 
         })
         recyclerView.apply {
