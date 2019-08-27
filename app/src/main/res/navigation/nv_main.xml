@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nv_main"
-    app:startDestination="@id/splashScreenFragment"
-    tools:ignore="UnusedNavigation">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -15,8 +14,8 @@
         <action
             android:id="@+id/actionSplashToHome"
             app:destination="@id/homeFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_out_right"
             app:popExitAnim="@anim/slide_in_left"
             app:popUpTo="@id/splashScreenFragment"
@@ -27,5 +26,76 @@
         android:id="@+id/homeFragment"
         android:name="com.sun.moviedb.view.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/actHomeToDetail"
+            app:destination="@id/detailMovieFragment"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left"
+            app:popUpTo="@id/detailMovieFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/actHomeToMovieByCategory"
+            app:destination="@id/movieByCategoryFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/actHomeToSearch"
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/actHomeToMovieByGenres"
+            app:destination="@id/movieByGenresFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_out_right"
+            app:popExitAnim="@anim/slide_in_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="com.sun.moviedb.view.detail.DetailMovieFragment"
+        android:label="DetailMovieFragment"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="movie"
+            app:argType="com.sun.moviedb.data.entity.Movie" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieByCategoryFragment"
+        android:name="com.sun.moviedb.view.category.MovieByCategoryFragment"
+        android:label="MovieByCategoryFragment"
+        tools:layout="@layout/fragment_movie_by_category">
+        <argument
+            android:name="query"
+            app:argType="string" />
+        <action
+            android:id="@+id/actMovieByCategoryToDetail"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieByGenresFragment"
+        android:name="com.sun.moviedb.view.genres.MovieByGenresFragment"
+        android:label="MovieByGenresFragment"
+        tools:layout="@layout/fragment_movie_by_genres">
+        <argument
+            android:name="genres"
+            app:argType="integer" />
+        <action
+            android:id="@+id/actMovieByGenresToDetail"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.sun.moviedb.view.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/actSearchToDetail"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
 </navigation>

@@ -2,7 +2,6 @@
     <style name="AppTheme.DayNight" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorOnPrimary">@color/color_on_primary</item>
-        <item name="android:colorBackground">@color/color_background</item>
         <item name="android:statusBarColor">@color/color_status_bar</item>
         <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
         <item name="shapeAppearanceMediumComponent">@style/AppShapeAppearance.MediumComponent</item>

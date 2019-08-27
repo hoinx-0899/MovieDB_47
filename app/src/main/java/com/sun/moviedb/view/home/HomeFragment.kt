@@ -9,22 +9,24 @@ import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.widget.TooltipCompat
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.navOptions
+import androidx.navigation.fragment.findNavController
 import com.sun.moviedb.MainActivity
 import com.sun.moviedb.R
+import com.sun.moviedb.base.BaseResponse
 import com.sun.moviedb.base.ViewModelBaseFragment
 import com.sun.moviedb.constants.Constants
+import com.sun.moviedb.data.dto.CategoryDTO
+import com.sun.moviedb.data.entity.Movie
 import com.sun.moviedb.databinding.FragmentHomeBinding
 import com.sun.moviedb.utils.CategoryQuery
 import com.sun.moviedb.view.adapter.GenresAdapter
+import com.sun.moviedb.view.adapter.HomeAdapter
 import com.sun.moviedb.view.widget.BackDropView
+import com.sun.moviedb.view.widget.SpaceItemDecoration
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.layout_menu.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -34,9 +36,6 @@ import org.koin.android.viewmodel.ext.android.viewModel
  * @author nguyen.xuan.hoi@sun-asterisk.com
  */
 class HomeFragment : ViewModelBaseFragment<HomeViewModel, FragmentHomeBinding>(), View.OnClickListener {
-
-    private val navController: NavController
-        get() = (childFragmentManager.findFragmentById(R.id.hostHomeNav) as NavHostFragment).navController
 
     override val viewModel: HomeViewModel by viewModel()
 
@@ -49,24 +48,7 @@ class HomeFragment : ViewModelBaseFragment<HomeViewModel, FragmentHomeBinding>()
 
     override fun initializeComponents() {
         initGenres()
-    }
-
-    private fun initGenres() {
-        val adapterGenres = GenresAdapter {
-            drawer.closeDrawer(GravityCompat.END)
-            val bundle = bundleOf()
-            navigate(R.id.movieByGenresFragment, bundle)
-
-        }
-        recyclerGenres.apply {
-            this.adapter = adapterGenres
-        }
-        viewModel.genres.observe(this, Observer {
-            handlerError(it)
-            it.result?.let { genres ->
-                adapterGenres.submitList(genres)
-            }
-        })
+        initCategory()
     }
 
     override fun registerListeners() {
@@ -76,19 +58,8 @@ class HomeFragment : ViewModelBaseFragment<HomeViewModel, FragmentHomeBinding>()
     }
 
     override fun onClick(v: View) {
-        when (v) {
-            buttonNowPlaying -> {
-                val bundle = bundleOf(BUNDLE_QUERY to CategoryQuery.NOW_PLAYING)
-                navigate(R.id.movieByCategoryFragment, bundle)
-            }
-            buttonTopRate -> {
-                val bundle = bundleOf(BUNDLE_QUERY to CategoryQuery.TOP_RATE)
-                navigate(R.id.movieByCategoryFragment, bundle)
-            }
-        }
 
     }
-
 
     override fun onBackPressed(): Boolean {
         if (drawer.isDrawerOpen(GravityCompat.END)) {
@@ -103,6 +74,18 @@ class HomeFragment : ViewModelBaseFragment<HomeViewModel, FragmentHomeBinding>()
         val toggleTheme = menu.findItem(R.id.menu_theme)
         toggleDarkTheme(toggleTheme)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+        R.id.menu_search -> {
+            true
+        }
+        R.id.menu_filter -> {
+            drawer.openDrawer(GravityCompat.END)
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
+
     }
 
     private fun toggleDarkTheme(toggleTheme: MenuItem) {
@@ -126,17 +109,62 @@ class HomeFragment : ViewModelBaseFragment<HomeViewModel, FragmentHomeBinding>()
                 Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
     }
 
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.menu_search -> {
-            navigate(R.id.searchFragment, null)
-            true
+    private fun initCategory() {
+        val categories = viewModel.getCategories()
+        val adapter = HomeAdapter({ category ->
+            val directions = HomeFragmentDirections.actHomeToMovieByCategory(category.queryType)
+            findNavController().navigate(directions)
+        }, { movie ->
+            val directions = HomeFragmentDirections.actHomeToDetail(movie)
+            findNavController().navigate(directions)
+        })
+        recyclerView.apply {
+            setHasFixedSize(true)
+            addItemDecoration(SpaceItemDecoration(resources.getDimensionPixelSize(R.dimen.dp_8)))
+            this.adapter = adapter
         }
-        R.id.menu_filter -> {
-            drawer.openDrawer(GravityCompat.END)
-            true
+        adapter.submitList(categories)
+        categories.forEach { category ->
+            when (category.queryType) {
+                CategoryQuery.POPULAR -> {
+                    observeMovieByCategory(category, adapter, viewModel.moviesPopular)
+                }
+                CategoryQuery.UP_COMING -> {
+                    observeMovieByCategory(category, adapter, viewModel.moviesUpComming)
+                }
+            }
         }
-        else -> super.onOptionsItemSelected(item)
+    }
 
+    private fun observeMovieByCategory(
+            category: CategoryDTO,
+            adapter: HomeAdapter, data:
+            LiveData<BaseResponse<List<Movie>>>
+    ) {
+        data.observe(this, Observer {
+            handlerError(it)
+            it.result?.let { movies ->
+                category.movies = movies
+                adapter.notifyDataSetChanged()
+            }
+        })
+    }
+
+    private fun initGenres() {
+        val adapterGenres = GenresAdapter {
+            drawer.closeDrawer(GravityCompat.END)
+            findNavController().navigate(R.id.actHomeToMovieByGenres)
+
+        }
+        recyclerGenres.apply {
+            this.adapter = adapterGenres
+        }
+        viewModel.genres.observe(this, Observer {
+            handlerError(it)
+            it.result?.let { genres ->
+                adapterGenres.submitList(genres)
+            }
+        })
     }
 
     private fun setUpToolBar() {
@@ -146,23 +174,5 @@ class HomeFragment : ViewModelBaseFragment<HomeViewModel, FragmentHomeBinding>()
                 ContextCompat.getDrawable(context!!, R.drawable.ic_menu),
                 ContextCompat.getDrawable(context!!, R.drawable.ic_close_menu))
         )
-    }
-
-    private fun navigate(id: Int, bundle: Bundle?) {
-        if (navController.currentDestination?.id != id) {
-            navController.navigate(id, bundle, navOptions {
-                anim {
-                    enter = R.anim.slide_in_right
-                    exit = R.anim.slide_out_left
-                    popEnter = R.anim.slide_in_left
-                    popExit = R.anim.slide_out_right
-                }
-                popUpTo = navController.graph.startDestination
-                launchSingleTop = true
-            })
-        }
-    }
-    companion object{
-        const val BUNDLE_QUERY = "query"
     }
 }
