@@ -7,10 +7,8 @@ import com.sun.moviedb.BuildConfig
 import com.sun.moviedb.MovieApplication
 import com.sun.moviedb.data.dao.GenresDao
 import com.sun.moviedb.data.dao.MovieDao
-import com.sun.moviedb.data.dao.MovieGenresJoinDao
 import com.sun.moviedb.data.entity.Genres
 import com.sun.moviedb.data.entity.Movie
-import com.sun.moviedb.data.entity.MovieGenresJoin
 
 /**
  * Created by nguyenxuanhoi on 2019-08-05.
@@ -25,12 +23,10 @@ object DatabaseManager {
                 .build()
     }
 
-    @Database(entities = [Genres::class, Movie::class, MovieGenresJoin::class],
+    @Database(entities = [Genres::class, Movie::class],
             version = BuildConfig.APP_DATABASE_VERSION, exportSchema = false)
     abstract class AppDatabase : RoomDatabase() {
         abstract fun genresDao(): GenresDao
         abstract fun movieDao(): MovieDao
-        abstract fun movieGenresDao(): MovieGenresJoinDao
-
     }
 }

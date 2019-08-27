@@ -9,8 +9,13 @@ import com.sun.moviedb.databinding.FragmentDetailBinding
  * Created by nguyenxuanhoi on 2019-08-22.
  * @author nguyen.xuan.hoi@sun-asterisk.com
  */
-class DetailMovieFragment :BaseFragment<FragmentDetailBinding>(){
-    override val getContentViewId= R.layout.fragment_detail
+class DetailMovieFragment : BaseFragment<FragmentDetailBinding>() {
+    private val movie by lazy {
+        arguments?.let {
+            DetailMovieFragmentArgs.fromBundle(it).movie
+        }
+    }
+    override val getContentViewId = R.layout.fragment_detail
 
     override fun initializeView(savedInstanceState: Bundle?) {
     }

@@ -32,11 +32,12 @@ class MovieByCategoryFragment : ViewModelBaseFragment<MovieByCategoryViewModel, 
     }
 
     override fun initializeComponents() {
-        val movieAdapter = MovieAdapter {
-            findNavController().navigate(R.id.actMovieByCategoryToDetailActivity)
-
+        val movieAdapter = MovieAdapter {movie->
+            val directions = MovieByCategoryFragmentDirections.actMovieByCategoryToDetail(movie)
+            findNavController().navigate(directions)
         }
         recyclerViewMovie.apply {
+            setHasFixedSize(true)
             layoutManager = GridLayoutManager(context, 3)
             addItemDecoration(SpaceItemDecoration(resources.getDimensionPixelSize(R.dimen.dp_4)))
             this.adapter = movieAdapter
