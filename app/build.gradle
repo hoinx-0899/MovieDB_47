@@ -26,7 +26,6 @@ android {
         versionName appVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "CLIENT_ID", CLIENT_ID
-        buildConfigField "String", "YOUTUBE_KEY", YOUTUBE_KEY
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
         buildConfigField "int", "APP_DATABASE_VERSION", "1"
         javaCompileOptions {
