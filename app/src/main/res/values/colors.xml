@@ -5,5 +5,8 @@
     <color name="color_accent">#6ACAFD</color>
     <color name="color_on_primary">@android:color/white</color>
     <color name="color_status_bar">#95DBFF</color>
+    <color name="color_text_primary">@android:color/black</color>
     <color name="color_yellow">#FF9800</color>
+    <color name="color_white">#B3FFFFFF</color>
+    <color name="color_black_32">#32000000</color>
 </resources>

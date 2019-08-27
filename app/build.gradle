@@ -90,7 +90,11 @@ dependencies {
     implementation "androidx.paging:paging-runtime:$versions.paging_version"
     //preference
     implementation "androidx.preference:preference:$versions.preference"
-
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.rxjava_version"
+    //implementation "io.reactivex.rxjava2:rxjava:$rxandroid_version"
+    implementation "io.reactivex.rxjava2:rxkotlin:$versions.rxkotlin"
+    implementation "androidx.emoji:emoji-appcompat:$versions.emoji"
+    implementation "com.google.android.exoplayer:exoplayer:$versions.exoplayer"
     //Testing
     testImplementation "junit:junit:$versions.junit"
     androidTestImplementation "androidx.test:runner:$versions.runner"
