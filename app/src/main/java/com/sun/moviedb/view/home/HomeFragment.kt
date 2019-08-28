@@ -54,11 +54,14 @@ class HomeFragment : ViewModelBaseFragment<HomeViewModel, FragmentHomeBinding>()
 
     override fun registerListeners() {
         buttonAbout.setOnClickListener(this)
+        buttonFavorite.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View) {
         when(v){
             buttonAbout-> AlertDialogUtil.showAppInfoMessageDialog(requireContext(),true)
+            buttonFavorite->  findNavController().navigate(R.id.actHomeToFavorite)
         }
 
     }
@@ -80,6 +83,7 @@ class HomeFragment : ViewModelBaseFragment<HomeViewModel, FragmentHomeBinding>()
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.menu_search -> {
+            findNavController().navigate(R.id.actHomeToSearch)
             true
         }
         R.id.menu_filter -> {
