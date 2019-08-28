@@ -10,6 +10,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.sun.moviedb.MovieApplication
 import com.sun.moviedb.R
+import com.sun.moviedb.data.entity.Genres
 import com.sun.moviedb.data.entity.Movie
 import com.sun.moviedb.view.adapter.MovieAdapter
 
@@ -35,17 +36,18 @@ object BindingUtils {
     fun bindImageFromUrl(imageView: ImageView, imageUrl: String?) {
         imageUrl?.let {
             var requestOptions = RequestOptions()
-            requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners( MovieApplication.applicationContext!!.resources.getDimensionPixelSize(R.dimen.dp_8)))
+            requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(MovieApplication.applicationContext!!.resources.getDimensionPixelSize(R.dimen.dp_8)))
             Glide.with(imageView.context)
-                .applyDefaultRequestOptions(requestOptions)
-                .load(StringUtils.getImage(it))
-                .into(imageView)
+                    .applyDefaultRequestOptions(requestOptions)
+                    .load(StringUtils.getImage(it))
+                    .into(imageView)
         }
     }
+
     @BindingAdapter("android:text")
     @JvmStatic
-    fun bindTextView(textView: TextView,title:String){
-            textView.text=title
+    fun bindTextView(textView: TextView, title: String?) {
+        title?.let { textView.text = it }
     }
 
     @BindingAdapter("movieCategories")
@@ -55,4 +57,29 @@ object BindingUtils {
         adapter?.submitList(movies)
     }
 
+    @BindingAdapter("titleGenres")
+    @JvmStatic
+    fun bindTitleGenres(textView: TextView, genres: List<Genres>?) {
+        val stringBuilder = StringBuilder()
+        genres?.let {
+            for (s in it) {
+                stringBuilder.append(s.name)
+                stringBuilder.append(String(Character.toChars(0x1F61C)))
+            }
+            textView.text = stringBuilder.toString()
+        }
+    }
+
+    @BindingAdapter("youTubeThumbnailView")
+    @JvmStatic
+    fun setYouTubeThumbnailViewForTrailer(imageView: ImageView, trailerKey: String?) {
+        trailerKey?.let {
+            var requestOptions = RequestOptions()
+            requestOptions = requestOptions.transforms(CenterCrop(), RoundedCorners(imageView.context.resources.getDimensionPixelSize(R.dimen.dp_8)))
+            Glide.with(imageView.context)
+                    .applyDefaultRequestOptions(requestOptions)
+                    .load(StringUtils.getThumbnail(it))
+                    .into(imageView)
+        }
+    }
 }
