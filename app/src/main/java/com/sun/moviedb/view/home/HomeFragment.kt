@@ -22,6 +22,7 @@ import com.sun.moviedb.constants.Constants
 import com.sun.moviedb.data.dto.CategoryDTO
 import com.sun.moviedb.data.entity.Movie
 import com.sun.moviedb.databinding.FragmentHomeBinding
+import com.sun.moviedb.utils.AlertDialogUtil
 import com.sun.moviedb.utils.CategoryQuery
 import com.sun.moviedb.view.adapter.GenresAdapter
 import com.sun.moviedb.view.adapter.HomeAdapter
@@ -52,12 +53,13 @@ class HomeFragment : ViewModelBaseFragment<HomeViewModel, FragmentHomeBinding>()
     }
 
     override fun registerListeners() {
-        buttonNowPlaying.setOnClickListener(this)
-        buttonTopRate.setOnClickListener(this)
-
+        buttonAbout.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
+        when(v){
+            buttonAbout-> AlertDialogUtil.showAppInfoMessageDialog(requireContext(),true)
+        }
 
     }
 

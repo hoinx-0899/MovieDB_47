@@ -16,7 +16,6 @@ android {
     def appVersionCode = versionProperties['appVersionCode'].toInteger()
     def appVersionName = versionProperties['appVersionName'].toString()
     def CLIENT_ID = versionProperties['CLIENT_ID'].toString()
-    def YOUTUBE_KEY = versionProperties['YOUTUBE_KEY'].toString()
     compileSdkVersion versions.compileSdk
     defaultConfig {
         applicationId "com.sun.moviedb"
@@ -28,6 +27,7 @@ android {
         buildConfigField "String", "CLIENT_ID", CLIENT_ID
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
         buildConfigField "int", "APP_DATABASE_VERSION", "1"
+        buildConfigField "long", "BUILD_TIME", System.currentTimeMillis() +"L"
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [
@@ -95,6 +95,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:$versions.rxkotlin"
     implementation "androidx.emoji:emoji-appcompat:$versions.emoji"
     implementation "com.google.android.exoplayer:exoplayer:$versions.exoplayer"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swiperefreshlayout"
     //Testing
     testImplementation "junit:junit:$versions.junit"
     androidTestImplementation "androidx.test:runner:$versions.runner"
