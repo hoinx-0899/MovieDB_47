@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    app:cardCornerRadius="@dimen/dp_16">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageAppInfo"
+            android:layout_width="@dimen/dp_96"
+            android:layout_height="@dimen/dp_96"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:contentDescription="@null"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textVersion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageAppInfo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_16"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="@color/color_text_primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageAppInfo" />
+
+        <TextView
+            android:id="@+id/textBuildTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textVersion"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_16"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="@color/color_text_primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textVersion" />
+
+        <TextView
+            android:id="@+id/textCopyRight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textBuildTime"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_16"
+            android:gravity="center"
+            android:text="@string/message_info_copy_right"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="@color/color_text_primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textBuildTime" />
+
+        <TextView
+            android:id="@+id/textWeb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textCopyRight"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_16"
+            android:autoLink="web"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="@color/color_text_primary"
+            android:textColorLink="@color/color_primary_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textCopyRight" />
+
+        <TextView
+            android:id="@+id/textEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textWeb"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp_16"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:autoLink="email"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:textColor="@color/color_text_primary"
+            android:textColorLink="@color/color_primary_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textWeb"
+            app:layout_constraintTop_toBottomOf="@+id/textWeb" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
