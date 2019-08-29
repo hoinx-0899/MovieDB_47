@@ -55,6 +55,9 @@
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_out_right"
             app:popExitAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/actHomeToFavorite"
+            app:destination="@id/favoriteFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailMovieFragment"
@@ -96,6 +99,15 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/actSearchToDetail"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.sun.moviedb.view.favorite.FavoriteFragment"
+        android:label="FavoriteFragment"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/actionFavoriteToDetail"
             app:destination="@id/detailMovieFragment" />
     </fragment>
 </navigation>
