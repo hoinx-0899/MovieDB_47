@@ -6,6 +6,9 @@
         <variable
             name="item"
             type="com.sun.moviedb.data.entity.Movie" />
+        <variable
+            name="viewModel"
+            type="com.sun.moviedb.view.detail.DetailMovieViewModel" />
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
@@ -87,7 +90,8 @@
             app:layout_constraintBottom_toTopOf="@id/backgroundView"
             app:layout_constraintEnd_toEndOf="@+id/textNameMovie"
             app:layout_constraintStart_toEndOf="@id/imageMovie"
-            app:layout_constraintTop_toBottomOf="@id/textNameMovie" />
+            app:layout_constraintTop_toBottomOf="@id/textNameMovie"
+            app:titleGenres="@{viewModel.detailMovie.genres}"/>
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -179,6 +183,7 @@
                 android:layout_marginBottom="@dimen/dp_16"
                 android:ellipsize="end"
                 android:gravity="center"
+                android:text="@{viewModel.detailMovie.runTime.toString()}"
                 android:textAppearance="?attr/textAppearanceBody2"
                 app:layout_constraintEnd_toEndOf="@+id/imageCount"
                 app:layout_constraintStart_toStartOf="@+id/imageCount"

@@ -2,6 +2,7 @@ package com.sun.moviedb.di
 
 import com.sun.moviedb.MovieApplication
 import com.sun.moviedb.view.category.MovieByCategoryViewModel
+import com.sun.moviedb.view.detail.DetailMovieViewModel
 import com.sun.moviedb.view.home.HomeViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
@@ -18,5 +19,7 @@ val viewModelModule = module {
     viewModel { HomeViewModel(get(named(MovieApplication::class.java.name)), get(), get()) }
 
     viewModel { MovieByCategoryViewModel(get(named(MovieApplication::class.java.name)), get()) }
+
+    viewModel { DetailMovieViewModel(get(named(MovieApplication::class.java.name)), get()) }
 
 }

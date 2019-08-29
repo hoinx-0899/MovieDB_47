@@ -16,4 +16,7 @@
     <string name="title_favorite">Favorite</string>
     <string name="title_version">Version: </string>
     <string name="title_build_time">Build: </string>
+    <string name="title_trailer">Trailer</string>
+    <string name="title_casting">Cast</string>
+    <string name="title_producer">Producer</string>
 </resources>
